@@ -1,0 +1,36 @@
+node{ 
+    stage ('bankett scm checkout'){
+    git credentialsId: 'Bankett-Github', url: 'https://github.com/Bankett-Saal/Bankett-Saal-Service-DEV.git'
+    }
+
+    stage('SonarQube analysis') {
+    def scannerHome = tool 'sonarqube';
+    withSonarQubeEnv("sonarqube") {
+    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Bankettsaalz-Service-Dev  -Dsonar.host.url=http://43.205.231.80:9000 -Dsonar.login=b7a7f7d9c76260d8de943598fa3262962b488aa4 -Dsonar.sourceEncoding=UTF-8 -Dsonar.sources=src -Dsonar.language=java -Dsonar.java.binaries=bin" 
+ 
+  }
+  }
+    
+    stage('gradle Package'){
+     def gradleHome = tool name: 'gradle', type: 'gradle'
+     def gradleCMD = "${gradleHome}/bin/gradle"
+     sh "${gradleCMD} clean build"
+   } 
+    
+    stage ('permissions to opt'){
+    sh "ssh ubuntu@10.5.1.164 sudo chmod 777 /opt"
+}
+
+    stage ('copying the artifact to ansible'){
+    sh "scp -r /var/lib/jenkins/workspace/bankettsaalz-service/build/libs/*.jar ubuntu@10.5.1.164:/opt"
+    }
+
+stage ('Running the Service Ansible Playbook'){
+    sh "ssh ubuntu@10.5.1.164 ansible-playbook --become-user ubuntu /opt/playbooks/bankett-saalz-dev-service.yml"
+}
+
+stage ('Running the Service Ansible Playbook'){
+    sh "ssh ubuntu@10.5.1.164 ansible-playbook --become-user ubuntu /opt/playbooks/bankett-saalz-dev-ui.yml"
+}
+
+}
