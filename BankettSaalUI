@@ -6,7 +6,7 @@ node{
     stage('SonarQube analysis') {
     def scannerHome = tool 'sonarqube';
     withSonarQubeEnv("sonarqube") {
-    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Bankettsaalz-Service-Dev  -Dsonar.host.url=http://43.205.231.80:9000 -Dsonar.login=b7a7f7d9c76260d8de943598fa3262962b488aa4 -Dsonar.sourceEncoding=UTF-8 -Dsonar.sources=src -Dsonar.language=java -Dsonar.java.binaries=bin" 
+    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=banketsaalz-ui -Dsonar.host.url=http://43.205.231.80:9000 -Dsonar.login=b9c1a349eddffd67e2bd226bd2ae6e9d05d80fa6 -Dsonar.sourceEncoding=UTF-8 -Dsonar.sources=src -Dsonar.language=java -Dsonar.java.binaries=bin" 
  
   }
   }
