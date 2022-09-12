@@ -11,7 +11,7 @@ node{
   }
   }
 stage ('Running the Service Ansible Playbook'){
-    sh "ssh ubuntu@10.5.1.164 ansible-playbook --become-user ubuntu /opt/playbooks/bankett-saalz-dev-ui.yml"
+    sh "sudo ssh ubuntu@10.5.1.164 ansible-playbook --become-user ubuntu /opt/playbooks/bankett-saalz-dev-ui.yml"
 }
 
 }
