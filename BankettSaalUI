@@ -6,12 +6,12 @@ node{
     stage('SonarQube analysis') {
     def scannerHome = tool 'sonarqube';
     withSonarQubeEnv("sonarqube") {
-    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=banketsaalz-ui -Dsonar.host.url=http://43.205.231.80:9000 -Dsonar.login=b9c1a349eddffd67e2bd226bd2ae6e9d05d80fa6 -Dsonar.sourceEncoding=UTF-8 -Dsonar.sources=src -Dsonar.language=java -Dsonar.java.binaries=bin" 
+    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=banketsaalz-ui -Dsonar.host.url=http://13.232.63.129:9000 -Dsonar.login=b9c1a349eddffd67e2bd226bd2ae6e9d05d80fa6 -Dsonar.sourceEncoding=UTF-8 -Dsonar.sources=src -Dsonar.language=java -Dsonar.java.binaries=bin" 
  
   }
   }
 stage ('Running the Service Ansible Playbook'){
-    sh "ssh ubuntu@10.5.1.164 ansible-playbook --become-user ubuntu /opt/playbooks/bankett-saalz-dev-ui.yml"
+    sh "ssh ubuntu@3.110.127.135 ansible-playbook --become-user ubuntu /opt/playbooks/bankett-saalz-dev-ui.yml"
 }
 
 }
