@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class SearchbarService {
 
-  constructor(private http: HttpClient, private envUrl: environment) { }
+  constructor(private http: HttpClient, private envUrl: ./../../../environments/environment) { }
   getAllFunctionHalls():Observable<any>
   {
     return this.http.get(this.createCompleteRoute(route, this.envUrl.urlAddress));
