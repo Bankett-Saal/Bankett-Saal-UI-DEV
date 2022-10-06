@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable } from 'rxjs';
-import { EnvironmentUrlService } from './../../../environments/EnvironmentUrlService';
-
+// import { EnvironmentUrlService } from './../../../environments/EnvironmentUrlService';
+import { environment } from 'environments/environment';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class SearchbarService {
 
-  constructor(private http: HttpClient, private envUrl: EnvironmentUrlService) { }
+  constructor(private http: HttpClient, private envUrl: environment) { }
   getAllFunctionHalls():Observable<any>
   {
     return this.http.get(this.createCompleteRoute(route, this.envUrl.urlAddress));
