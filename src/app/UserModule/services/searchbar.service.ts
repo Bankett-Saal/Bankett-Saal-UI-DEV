@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable } from 'rxjs';
+import { EnvironmentUrlService } from './environment-url.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -11,10 +12,10 @@ const httpOptions = {
 })
 export class SearchbarService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private envUrl: EnvironmentUrlService) { }
   getAllFunctionHalls():Observable<any>
   {
-    return this.http.get('http://13.233.232.133:8057/api/functionhalls');
+    return this.http.get(this.createCompleteRoute(route, this.envUrl.urlAddress));
   }
   
   findFunctionhallByNameAndCity(city):Observable<any>
