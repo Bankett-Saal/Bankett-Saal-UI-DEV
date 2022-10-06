@@ -31,7 +31,8 @@ import { CalendarComponent } from './OwnerModule/components/calendar/calendar.co
 import { ProfileComponent } from './OwnerModule/components/profile/profile.component';
 import { SettingsComponent } from './OwnerModule/components/settings/settings.component';
 import { Login1Component } from './OwnerModule/components/login1/login1.component';
- 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
